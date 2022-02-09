@@ -8,12 +8,12 @@
 </head>
 <body>
     <div id="container">
-        <h1>Enter your favorite food please!</h1>
+        <h1>Employee Database!</h1>
         <nav>
-            <a href="#">Enter Food</a>
-            <a href="foodlist.html">Look at food</a>
+            <a href="#">Add Employee</a>
+            <a href="employeeList.html">View Employees</a>
         </nav>
-        <form action="/saveFoodEntry" method="post">
+        <!--<form action="/saveFoodEntry" method="post">
             <span id="err" style="color: red;"></span>
             <br>
             <label for="food">Enter your food here please!</label>
@@ -21,6 +21,39 @@
             <input type="text" name="food" id="FoodEntry">
             <br>
             <button type="submit">Submit Food</button>
+        </form>-->
+        <form action="/saveEmployeeEntry" method="post">
+            <span id="err" style="color: red;"></span>
+            <br>
+            <label for="firstName">Enter your First Name!</label>
+            <br>
+            <input type="text" name="firstName" id="firstEntry">
+            <br>
+            <label for="lastName">Enter your Last Name!</label>
+            <br>
+            <input type="text" name="lastName" id="lastEntry">
+            <br>
+            <label for="department">Pick your Department!</label>
+            <br>
+            <select id="departmentSelect" name="department">
+                <option value="boss">Boss</option>
+                <option value="middleman">Middleman</option>
+                <option value="worker">Worker</option>
+            </select>
+            <br>
+            <label for="startDate">Date Started!</label>
+            <br>
+            <input type="date" name="startDate" id="dateEntry">
+            <br>
+            <label for="jobTitle">Enter your Job Title!</label>
+            <br>
+            <input type="text" name="jobTitle" id="titleEntry">
+            <br>
+            <label for="salary">Enter your Salary!</label>
+            <br>
+            <input type="text" name="salary" id="salaryEntry">
+            <br>
+            <button type="submit">Submit</button>
         </form>
     </div>
 </body>

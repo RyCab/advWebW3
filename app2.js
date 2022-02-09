@@ -9,7 +9,7 @@ app.use(express.json())
 
 
 
-mongoose.connect('mongodb://localhost:27017/employeeEntries', {
+mongoose.connect('mongodb://localhost:27017/foodEntries', {
     useNewURLParser:true
 }).then(()=>{
     console.log("Connected to Database")
@@ -18,35 +18,35 @@ mongoose.connect('mongodb://localhost:27017/employeeEntries', {
 })
 
 
-//require('./models/Food')
-require('./models/Employee')
+require('./models/Food')
+//require('./models/Employee')
 
-//var Food = mongoose.model('food')
-var Employees = mongoose.model('employee')
+var Food = mongoose.model('food')
+//var Employee = mongoose.model('employee')
 
 //Save data
-app.post('/saveEmployeeEntry', (req, res)=>{
+app.post('/saveFoodEntry', (req, res)=>{
     console.log(req.body)
 
-    //Create employee entry
-    new Employees(req.body).save().then(()=>{
+    //Create food entry
+    new Food(req.body).save().then(()=>{
         console.log("Data Saved")
-        res.redirect("employeeList.html")
+        res.redirect("foodlist.html")
     })
 })
 
 //Save data
-
+/*
 app.post('/saveEmployeeEntry', (req, res)=>{
     console.log(req.body)
 
-    //Create employee entry
-    new Employees(req.body).save().then(()=>{
+    //Create food entry
+    new Employee(req.body).save().then(()=>{
         console.log("Data Saved")
-        res.redirect("employeeList.html")
+        res.redirect("foodlist.html")
     })
 })
-
+*/
 ////////
 //Basic code saving some data
 /*var Food = mongoose.model('Food', {typeOfFood:String})
@@ -64,23 +64,15 @@ app.listen(3000, ()=>{
 
 //Get data
 app.get('/getData', (req, res)=>{
-    Employees.find().then((employee)=>{
-        res.json({employee})
+    Food.find().then((food)=>{
+        res.json({food})
     })
 })
 
 //Delete Data
-app.post('/deleteEmployee', (req, res)=>{
-    console.log("Employee deleted " + req.body._id + " " + req.body.employee)
-    Employees.findByIdAndDelete(req.body._id).exec()
-    res.redirect("employeeList.html")
-
-})
-
-//Update Data
-app.post('/updateEmployee', (req, res)=>{
-    console.log("Employee updated " + req.body._id + " " + req.body.employee)
-    Employees.findByIdAndUpdate(req.body._id).exec()
-    res.redirect("employeeList.html")
+app.post('/deleteFood', (req, res)=>{
+    console.log("Food deleted " + req.body._id + " " + req.body.food)
+    Food.findByIdAndDelete(req.body._id).exec()
+    res.redirect("foodlist.html")
 
 })
