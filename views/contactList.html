@@ -4,43 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Employees</title>
+    <title>View Contacts</title>
 </head>
 <body>
     <div id="container">
 
-        <h1>Here is your list of Employees!</h1>
+        <h1>Here is your list of Contacts!</h1>
         <nav>
             <a href="index.html">Enter Employee</a>
             <a href="#">View Employee</a>
         </nav>
         <script>
-            fetch('/getData').then((employees)=>{
-                employees.json().then((theEmployees)=>{
+            fetch('/getData').then((contacts)=>{
+                contacts.json().then((theContacts)=>{
                     
-                    for(let employee of theEmployees.employee){
-                        console.log(employee.firstName)
+                    for(let contact of theContacts.contact){
+                        console.log(contact.Name)
                         let element = document.createElement('p')
-                        element.innerHTML = employee.firstName
-                         + " " +employee.lastName
-                          + " " +employee.department
-                           + " " +employee.startDate
-                            + " " +employee.jobTitle
-                             + " " +employee.salary
+                        element.innerHTML = contact.Name
+                         + " " +contact.Number
+                          + " " +contact.PhoneType
                         document.getElementById('container').append(element)
                         //add delete button
                         let deleteButton = document.createElement('button')
                         deleteButton.innerText = 'Delete Entry'
-                        deleteButton.addEventListener('click', function deleteEmployee(){
+                        deleteButton.addEventListener('click', function deleteContact(){
                             location.reload()
-                            fetch('/deleteEmployee', {
+                            fetch('/deleteContact', {
                                 method:"POST",
                                 headers:{
                                     'Content-type': 'application/json'
                                 },
                                 body:JSON.stringify({
-                                    _id:employee._id,
-                                    employee:employee.employee
+                                    _id:contact._id,
+                                    contact:contact.contact
                                 })
                             })
                         })
@@ -48,16 +45,16 @@
 
                         let editButton = document.createElement('button')
                         editButton.innerText = 'Edit Entry'
-                        editButton.addEventListener('click', function editEmployee(){
+                        editButton.addEventListener('click', function editContact(){
                             location.reload()
-                            fetch('/editEmployee', {
+                            fetch('/editContact', {
                                 method:"POST",
                                 headers:{
                                     'Content-type': 'application/json'
                                 },
                                 body:JSON.stringify({
-                                    _id:employee._id,
-                                    employee:employee.employee
+                                    _id:contact._id,
+                                    contact:contact.contact
                                 })
                             })
                         })
